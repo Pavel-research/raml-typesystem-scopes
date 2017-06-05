@@ -1,0 +1,30 @@
+{
+  "name": "raml-typesystem-scopes",
+  "version": "0.0.20",
+  "private": false,
+  "scripts": {
+    "compile": "rimraf -rf dist/ && ./node_modules/typescript/bin/tsc"
+  },
+  "main": "./dist/nominal-interfaces.js",
+  "typings": "./dist/nominal-interfaces.d.ts",
+  "devDependencies": {
+    "typescript": "^2.0.0",
+    "dev-env-installer": "0.0.5",
+    "rimraf": "*",
+    "mocha": "^2.2.1",
+    "typedoc": "^0.3.12",
+    "chai": "^3.5.0",
+    "@types/mocha": "*",
+    "@types/chai": "*",
+    "istanbul": "^0.4.5",
+    "webpack": "^2.5.1",
+    "raml-typesystem-light":"0.0.19"
+  },
+  "directories": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/node": "^6.0.55",
+    "raml1-domain-model": "^0.0.18"
+  }
+}

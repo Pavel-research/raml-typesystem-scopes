@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@types/node": "^6.0.55"
+  },
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "noImplicitAny": false,
+    "lib": ["es2015","dom"],
+    "moduleResolution": "node",
+    "removeComments": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "jsx": "react",
+    "outDir": "dist",
+    "rootDirs": ["src","tests"]
+  },
+  "exclude": [
+    "node_modules","typings"
+  ]
+}
