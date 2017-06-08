@@ -44,8 +44,7 @@ hide some entity properties depending from semantical context of type usage.
 
 For example `id` and `subtasks` properties has no sense for the `Person` which is not created yet. 
 
-We solve this situation by providing a way to mark properties of RAML type as a properties which exist only 
-when type is used in an appropriate semantic context, and a tool which allows to get version of RAML type, specialized for particular context of usage. 
+We solve this situation by providing a way to mark properties as a properties which exists only in some semantic contexts, and a tool which allows to get version of RAML type, specialized for particular context of usage. 
 
 As we think this approach allows to describe APIs in a more concise and both more machine and human readable way. For example if your ecosystem supports our tool api above may be rewritten as:
 
@@ -88,6 +87,20 @@ Basically in this case `Person` type is specialized depending from the roles in 
 
 ### Specification
 
+To support this we introduce an annotaton `scopes` which can accept string or array of string and can be used on RAML types and properties declarations or alternatively on resource and methods to mark semantic roles associated with them. 
+
+The value of the annotation is the list of scope expressions. When scope processor specializes type or instance it goes through this list and marks the property as existing if any of this expressions is satisfied, and there is no negating scope expressions which are satisfied.
+
+Syntax for scope expressions:
+ *  `!{scopeName}` - requires that scope `scopeName` should not present in specialization context.
+ *  `{scopeName}^{scopeName}` - requires that both `admin` and `list` scopes should present in specialization context
+ *  `-{scopeName}` - requires that scope `scopeName` should present in specialization context but removes `scopeName` scope from a context for property range specialization
+ *  `+{scopeName}` - is never sutisfied unless `scopeName` scope already present in context, but if property passed speciaization(for example through another scope expression presented in the context), scope `scopeName` will be passed for property range specialization
+
+Algorithm for type specialization:
+
+
+
 ### Usage:
 
 Module exports two functions:
@@ -96,4 +109,3 @@ Module exports two functions:
 
 `toShape(obj:any,t:Type,scopes:string[]):any` - cleanups properties of the instance which are not visible
 in the given scopes
-
