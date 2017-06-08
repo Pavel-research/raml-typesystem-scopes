@@ -101,8 +101,8 @@ Algorithm for type specialization:
 
 * If specialized type is an object type then take all properties of specialized type and for each of them do the following:
 
-1. Check if the property range has `scopes` annotation, if this annotation is absent property exists unconditionally
-2. Take the value of the scopes annotation and execute scope expressions against currrent scopes. If the property passes scope expressions, adjust scopes in context with regards to '+' and '-' scope modifiers and create a specialized version of property range basing on this adjusted scopes.
+  1. Check if the property range has `scopes` annotation, if this annotation is absent property exists unconditionally
+  2. Take the value of the scopes annotation and execute scope expressions against currrent scopes. If the property passes scope expressions, adjust scopes in context with regards to '+' and '-' scope modifiers and create a specialized version of property range basing on this adjusted scopes.
 
 * If specialized type is an array type, derive new array type with a component type which is a specialized version of current array type component
 
