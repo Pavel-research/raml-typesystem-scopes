@@ -44,13 +44,10 @@ hide some entity properties depending from semantical context of type usage.
 
 For example `id` and `subtasks` properties has no sense for the `Person` which is not created yet. 
 
-So this project provides a way to mark properties of RAML type as a properties which exist only 
+We solve this situation by providing a way to mark properties of RAML type as a properties which exist only 
 when type is used in an appropriate semantic context, and a tool which allows to get version of RAML type, specialized for particular context of usage. 
 
-As we think this approach allows to describe APIs in a more concise and both more machine and human readable way.
-
-
-For example an api above may be rewritten as:
+As we think this approach allows to describe APIs in a more concise and both more machine and human readable way. For example if your ecosystem supports our tool api above may be rewritten as:
 
 ```raml
 #%RAML 1.0
@@ -88,8 +85,6 @@ types:
 Basically in this case `Person` type is specialized depending from the roles in the context:
 
 ![Diagram](contextSpecialization.png)
-
-
 
 ### Specification
 
