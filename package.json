@@ -1,12 +1,12 @@
 {
   "name": "raml-typesystem-scopes",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "private": false,
   "scripts": {
     "compile": "rimraf -rf dist/ && ./node_modules/typescript/bin/tsc"
   },
-  "main": "./dist/nominal-interfaces.js",
-  "typings": "./dist/nominal-interfaces.d.ts",
+  "main": "./dist/src/scopes.js",
+  "typings": "./dist/src/scopes.d.ts",
   "devDependencies": {
     "typescript": "^2.0.0",
     "dev-env-installer": "0.0.5",

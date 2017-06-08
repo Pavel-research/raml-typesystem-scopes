@@ -1,6 +1,7 @@
 import rti=require("raml1-domain-model")
-import {isNullOrUndefined} from "util";
-
+function isNullOrUndefined(v){
+    return v===null||v===undefined;
+}
 interface TransformationRecord {
     t: rti.Type;
     ps: string;
