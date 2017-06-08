@@ -91,7 +91,7 @@ To support this we introduce an annotaton `scopes` which can accept string or ar
 
 The value of the annotation is the list of scope expressions. When scope processor specializes type or instance it goes through this list and marks the property as existing if any of this expressions is satisfied, and there is no negating scope expressions which are satisfied.
 
-Syntax for scope expressions:
+#### Syntax for scope expressions:
  *  `!{scopeName}` - requires that scope `scopeName` should not present in specialization context.
  *  `{scopeName}^{scopeName1}` - requires that both `scopeName` and `scopeName1` scopes should present in specialization context (logical and)
  *  `-{scopeName}` - requires that scope `scopeName` should present in specialization context but removes `scopeName` scope from a context for property range specialization
