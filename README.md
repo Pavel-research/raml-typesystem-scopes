@@ -97,11 +97,12 @@ Syntax for scope expressions:
  *  `-{scopeName}` - requires that scope `scopeName` should present in specialization context but removes `scopeName` scope from a context for property range specialization
  *  `+{scopeName}` - is never sutisfied unless `scopeName` scope already present in context, but if property passed speciaization(for example through another scope expression presented in the context), scope `scopeName` will be passed for property range specialization
 
-Algorithm for type specialization:
+#### Algorithm for type specialization:
 
 * If specialized type is an object type then take all properties of specialized type and for each of them do the following:
 
-  1. Check if the property range has `scopes` annotation, if this annotation is absent property exists unconditionally
+  1. Check if the property range has `scopes` annotation. If this annotation is absent property exists unconditionally. In this case you should create a property with same name but the property range should be specialized against current scopes.
+  
   2. Take the value of the scopes annotation and execute scope expressions against currrent scopes. If the property passes scope expressions, adjust scopes in context with regards to '+' and '-' scope modifiers and create a specialized version of property range basing on this adjusted scopes.
 
 * If specialized type is an array type, derive new array type with a component type which is a specialized version of current array type component
@@ -111,11 +112,29 @@ Algorithm for type specialization:
 
 * If specialized type is a union derive a new union type which consists from specialized options of current union type.
 
+In all cases, everything except of property declarations stays unchanged.
+
 ### Usage:
 
 Module exports two functions:
     
-`specialize(t:Type,scopes:string[]):Type` - gives version of the type with respect to the given scopes
+`specialize(t:Type,scopes:string[]):Type` - gives version of the type with respect to the given `scopes`
 
 `toShape(obj:any,t:Type,scopes:string[]):any` - cleanups properties of the instance which are not visible
 in the given scopes
+
+####Examples of usage:
+
+Type specialization:
+
+```typescript
+import scopes=require('scopes')
+let specializedType = scopes.specialize(type, ["read"]);
+ ```
+
+Instance specializaion: 
+
+```typescript
+import scopes=require('scopes')
+let specializedInstance = scopes.specialize(person, PersonType, ["list"]);
+```
