@@ -123,7 +123,7 @@ Module exports two functions:
 `toShape(obj:any,t:Type,scopes:string[]):any` - cleanups properties of the instance which are not visible
 in the given scopes
 
-####Examples of usage:
+#### Examples of usage:
 
 Type specialization:
 
