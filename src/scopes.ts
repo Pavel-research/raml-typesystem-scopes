@@ -65,17 +65,15 @@ export function specialize(t: rti.Type, providedScopes: string[]): rti.Type {
         var ss = x.name();
         var scopes: string[] = null;
 
-        x.range().annotations().forEach(a => {
-            if (a.name() == "scopes") {
-                var value = a.value();
-                if (typeof value == "string") {
-                    scopes = [value];
-                }
-                else {
-                    scopes = value;
-                }
+        var value=x.range().annotation("scopes");
+        if (value){
+            if (typeof value == "string") {
+                scopes = [value];
             }
-        })
+            else {
+                scopes = value;
+            }
+        }
 
         if (scopes == null) {
             existing[ss] = ['$$$$'];
